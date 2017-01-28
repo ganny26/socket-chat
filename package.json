@@ -1,0 +1,27 @@
+{
+  "name": "socket-chat",
+  "version": "1.0.0",
+  "description": "chat server in socketio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganny26/socket-chat.git"
+  },
+  "keywords": [
+    "chat",
+    "socketio"
+  ],
+  "author": "selvaganesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ganny26/socket-chat/issues"
+  },
+  "homepage": "https://github.com/ganny26/socket-chat#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.7.2"
+  }
+}
