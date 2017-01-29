@@ -3,13 +3,74 @@
 
 <head>
     <title>socket chat</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
-    socket io chat
+    <div class="container" style="padding-top:30px;">
+        <div class=" row ">
+            <div class="col m4 " style="padding-top:30px; ">
+
+                <h5>Online users</h5>
+                <ul class="collection">
+                    <li class="collection-item ">Alvin</li>
+                    <li class="collection-item ">Alvin</li>
+                    <li class="collection-item ">Alvin</li>
+                    <li class="collection-item ">Alvin</li>
+                </ul>
+
+            </div>
+            <div class="col m8" style="padding-left: 30px; ">
+                <div class="chat" id="chat"></div>
+                <form id="messageForm">
+                    <div class="row ">
+                        <form class="col s12 ">
+                            <div class="row ">
+                                <div class="input-field col s12 ">
+                                    <textarea id="message" class="materialize-textarea "></textarea>
+                                    <label for="message">Enter message</label>
+                                </div>
+                                <br/>
+                                <input type="submit" class="btn btn-primary" value="Send message" />
+                            </div>
+                        </form>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript " src="https://code.jquery.com/jquery-2.1.1.min.js "></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js "></script>
+    <script>
+        $(document).ready(function() {
+            var socket = io.connect();
+            var $messageForm = $('#messageForm');
+            var $message = $('#message');
+            var $chat = $('#chat');
+
+            $messageForm.submit(function(e) {
+                e.preventDefault();
+                socket.emit('send message', $message.val());
+                $message.val('');
+            });
+
+            socket.on('new message', function(data) {
+                $chat.append('<div class="card-panel">' + data.msg + '</div>');
+            });
+
+        });
+    </script>
 </body>
 
 </html>
